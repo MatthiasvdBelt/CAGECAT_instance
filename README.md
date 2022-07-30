@@ -27,8 +27,6 @@ The cloned ```config.py``` file is a dummy file, and can not be directly used. A
 4. Build the Docker image with your custom tag
    1. This process is able to build on the background (i.e. appending ```&``` to the command)
 5. Create a Docker container using the preivously built image and run it in detached mode
-6. Get the container's IP adress
-
 ```
 git clone -b main https://github.com/MatthiasvdBelt/CAGECAT.git
 mv CAGECAT/config_files/Dockerfile ./Dockerfile
