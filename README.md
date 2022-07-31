@@ -39,7 +39,7 @@ docker run --name <custom_container_name> -d <cagecat_custom_tag>
 Get the IP address of the Docker container with
 
 ```
-docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' container_name_or_id
+docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <custom_container_name>
 ```
 
 #### When on same computer as Docker container
