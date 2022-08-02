@@ -7,16 +7,17 @@ cagecat_version = '3.1'  # when this is changed, /repo/maintenance/store_version
 NCBI_ftp_base_url = 'ftp.ncbi.nlm.nih.gov'
 
 # MUST CHANGE:
-domain = ''  # prefix ofhow you access your Docker instance
+domain = ''  # prefix of how you access your Docker instance
 
 # changeable
 send_mail = False
 period_to_keep_job_results = 31
 
-
-hmm_db_creation_conf = {'sleeping_time': 60,
-                        'cpus': '10',
-                        'batch_size': '30'}
+hmm_db_creation_conf = {
+    'sleeping_time': 60,
+    'cpus': '10',
+    'batch_size': '30'
+}
 
 thresholds = {
     'maximum_clusters_to_extract': 150,
