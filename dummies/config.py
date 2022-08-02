@@ -7,7 +7,7 @@ cagecat_version = '3.1'  # when this is changed, /repo/maintenance/store_version
 NCBI_ftp_base_url = 'ftp.ncbi.nlm.nih.gov'
 
 # MUST CHANGE:
-domain = ''  # prefix of how you access your Docker instance
+domain = '127.0.0.1:5364/'  # prefix of how you access your Docker instance
 
 # changeable
 send_mail = False
