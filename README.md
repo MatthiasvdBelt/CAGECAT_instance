@@ -2,60 +2,85 @@
 
 Requirements:
 - Sufficient rights to use Docker
-- More than 16GB of free space
-- 2GB of RAM memory
+- 15GB of free space
 
-### Installing prerequisites
-```
-sudo apt-get
-sudo apt install docker git nano
-```
 
-### Clone this repository
+### 1. Clone this repository
 ```
 git clone https://github.com/MatthiasvdBelt/CAGECAT_instance.git
 ```
 
-### Customize the ```config.py``` file
-The cloned ```config.py``` file is a dummy file, and can not be directly used. All missing parameters should be filled manually.
+### 2. Fill in parameters in the ```CAGECAT_instance/dummies``` folder
+**Obligatory:**
+1. Add email to config.ini (obligatory by NCBI)
 
 
-### Running the instance
-1. Clone the CAGECAT repository
-2. Move the Dockerfile to the current directory
-3. Edit the ```config.py``` file
-4. Build the Docker image with your custom tag
-   1. This process is able to build on the background (i.e. appending ```&``` to the command)
-5. Create a Docker container using the preivously built image and run it in detached mode
+**Optional**
+
+If you wish to add the functionality to send your users email notifications, perform the following steps.
+
+1. Add email configurations in ```sensitive.py```
+2. Set ```send_email``` variable to ```True``` in ```config.py```
+
+
+### 3. Preparing the container
+Execute the following steps with the geven commands for your operating system.
+
+1. Name a container
+2. Start a new container
+3. Move configuration files to the running Docker container
+4. Reload the container
+
+#### a. Linux/macOS
+
 ```
-git clone -b main https://github.com/MatthiasvdBelt/CAGECAT.git
-mv CAGECAT/config_files/Dockerfile ./Dockerfile
-nano CAGECAT/config.py
-docker build -t <cagecat_custom_tag> .
-docker run --name <custom_container_name> -d <cagecat_custom_tag>
+container_name=<container_name>
+
+docker run --name $container_name -d -p 5364:88 matthiasvdbelt/cagecat_instance:v3.1
+
+docker cp CAGECAT_instance/dummies/config.py $container_name:/repo/config_files/config.py
+docker cp CAGECAT_instance/dummies/sensitive.py $container_name>:/repo/config_files/sensitive.py
+docker cp CAGECAT_instance/dummies/config.ini $container_name:/root/.config/cblaster/config.ini
+
+docker exec $container_name uwsgi --reload /tmp/uwsgi-master.pid
 ```
 
-### Connecting to the container
-Get the IP address of the Docker container with
 
+#### b. Windows
 ```
-docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <custom_container_name>
+set container_name=<container_name>
+
+docker run --name %container_name% -d -p 5364:88 matthiasvdbelt/cagecat_instance:v3.1
+
+docker cp CAGECAT_instance\dummies\config.py %container_name%:/repo/config_files/config.py
+docker cp CAGECAT_instance\dummies\sensitive.py %container_name%:/repo/config_files/sensitive.py
+docker cp CAGECAT_instance\dummies\config.ini %container_name%:/root/.config/cblaster/config.ini
+
+docker exec %container_name% uwsgi --reload /tmp/uwsgi-master.pid
 ```
 
-#### When on same computer as Docker container
-In your browser, navigate to
-```
-<container_ip_address>:88
-```
-Now, you are be able to use CAGECAT and all it's functionalities.
 
-#### When on a different computer
+### 4. Using CAGECAT
+
+#### a. From your own computer
+Navigate to [http://localhost:5364/](http://localhost:5364/) in your browser and use CAGECAT.
+
+#### b. From a different computer
 An SSH tunnel needs to be created between the computer running the Docker container, and the computer you wish to use for using CAGECAT. All interactions with the Docker container will use this SSH tunneling.
 
-Create the SSH tunnel by executing
-```
-ssh <ip_address_of_computer_running_docker_container> -L 9999:<container_ip_address>:88
-```
-Next, you are be able to use CAGECAT and all it's functionalities when navigating to <a href="127.0.0.1:9999">127.0.0.1:9999</a> in your browser.
+Get the IP of your running Docker container and create the SSH tunnel 
 
-missing the sensitive.py file
+
+**Linux/macOS**
+```
+container_ip=docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $container_name
+ssh <ip_address_of_computer_running_docker_container> -L 9999:$container_ip:88
+```
+
+**Windows**
+```
+container_ip=docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' %container_name%
+ssh <ip_address_of_computer_running_docker_container> -L 9999:%container_ip%:88
+```
+
+Next, you are able to use CAGECAT and all it's functionalities when navigating to [http://localhost:9999/](http://localhost:9999/) in your browser.
