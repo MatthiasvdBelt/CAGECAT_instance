@@ -41,7 +41,7 @@ tag=<tag>
 docker run --name $container_name -d -p 5364:88 matthiasvdbelt/cagecat_instance:$tag
 
 docker cp CAGECAT_instance/dummies/config.py $container_name:/repo/config_files/config.py
-docker cp CAGECAT_instance/dummies/sensitive.py $container_name>:/repo/config_files/sensitive.py
+docker cp CAGECAT_instance/dummies/sensitive.py $container_name:/repo/config_files/sensitive.py
 docker cp CAGECAT_instance/dummies/config.ini $container_name:/root/.config/cblaster/config.ini
 
 docker exec $container_name uwsgi --reload /tmp/uwsgi-master.pid
