@@ -26,8 +26,9 @@ If you wish to add the functionality to send your users email notifications, per
 ### 3. Preparing the container
 Execute the following steps with the geven commands for your operating system.
 
-1. Name a container
-2. Start a new container
+1. Name a container and Docker image tag
+   1. Use the desired Docker image tag. [Can be inspected here.](https://hub.docker.com/repository/docker/matthiasvdbelt/cagecat_instance/general)
+2. Start a new container (if the image is not present locally, it will be fetched from Docker hub) 
 3. Move configuration files to the running Docker container
 4. Reload the container
 
@@ -35,8 +36,9 @@ Execute the following steps with the geven commands for your operating system.
 
 ```
 container_name=<container_name>
+tag=<tag>
 
-docker run --name $container_name -d -p 5364:88 matthiasvdbelt/cagecat_instance:v3.1
+docker run --name $container_name -d -p 5364:88 matthiasvdbelt/cagecat_instance:$tag
 
 docker cp CAGECAT_instance/dummies/config.py $container_name:/repo/config_files/config.py
 docker cp CAGECAT_instance/dummies/sensitive.py $container_name>:/repo/config_files/sensitive.py
@@ -49,8 +51,9 @@ docker exec $container_name uwsgi --reload /tmp/uwsgi-master.pid
 #### b. Windows
 ```
 set container_name=<container_name>
+set tag=<tag>
 
-docker run --name %container_name% -d -p 5364:88 matthiasvdbelt/cagecat_instance:v3.1
+docker run --name %container_name% -d -p 5364:88 matthiasvdbelt/cagecat_instance:%tag%
 
 docker cp CAGECAT_instance\dummies\config.py %container_name%:/repo/config_files/config.py
 docker cp CAGECAT_instance\dummies\sensitive.py %container_name%:/repo/config_files/sensitive.py
