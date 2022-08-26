@@ -82,7 +82,7 @@ ssh <ip_address_of_computer_running_docker_container> -L 9999:$container_ip:88
 
 **Windows**
 ```
-container_ip=docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' %container_name%
+set container_ip=docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' %container_name%
 ssh <ip_address_of_computer_running_docker_container> -L 9999:%container_ip%:88
 ```
 
