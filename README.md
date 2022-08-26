@@ -64,6 +64,11 @@ docker exec %container_name% uwsgi --reload /tmp/uwsgi-master.pid
 
 
 ### 4. Using CAGECAT
+For local CAGECAT instances, no HMM databases are present by default. You are able to create HMM databases by running  these scripts in parallel:
+1. ```/repo/hmm_database_creation/construct_hmm_databases.sh``` (either ```prokaryota``` or ```fungi``` as first argument)
+2. ```/repo/hmm_database_creation/create_databases.py```
+
+Currently, HMM databases can only be created for these two kingdoms (and the kingdoms as a whole). In future releases, we aim to have pre-baked HMM databases and scripts to create HMM databases for specific genera. 
 
 #### a. From your own computer
 Navigate to [http://localhost:5364/](http://localhost:5364/) in your browser and use CAGECAT.
