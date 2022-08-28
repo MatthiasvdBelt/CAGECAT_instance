@@ -2,7 +2,7 @@
 
 Author: Matthias van den Belt
 """
-cagecat_version = '3.3'
+cagecat_version = '1.0'
 # When the version number is changed, /repo/maintenance/store_version_info.py should be run
 # also, the cache busting of the JavaScript file and CSS file in cagecat/templates/base.html
 # should be updated. (i.e. scripts.js?v=3.2 -> scripts.js?v=3.3)

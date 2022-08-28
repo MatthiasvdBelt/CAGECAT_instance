@@ -12,7 +12,7 @@ git clone https://github.com/MatthiasvdBelt/CAGECAT_instance.git
 
 ### 2. Fill in parameters in the ```CAGECAT_instance/dummies``` folder
 **Obligatory:**
-1. Add email to config.ini (obligatory by NCBI)
+1. Add email to ```config.ini``` (obligatory by NCBI)
 
 
 **Optional**
