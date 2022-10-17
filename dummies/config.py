@@ -44,3 +44,6 @@ init_config = {
     "SQLALCHEMY_TRACK_MODIFICATIONS": False,
     'SECRET_KEY': csrf_key
 }
+
+if csrf_key == '!This_key_should_be_changed_manually_and_should_not_be_left_as_is!':
+    raise ValueError('CSRF key cannot be unchanged. Please change this value of the csrf_key variable')
