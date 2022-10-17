@@ -65,11 +65,13 @@ docker restart %container_name%
 
 
 ### 4. Using CAGECAT
-For local CAGECAT instances, no HMM databases are present by default. You are able to create HMM databases by running  these scripts in parallel:
-1. ```/repo/hmm_database_creation/construct_hmm_databases.sh``` (either ```prokaryota``` or ```fungi``` as first argument)
-2. ```/repo/hmm_database_creation/create_databases.py```
+For local CAGECAT instances, no HMM databases are present by default. You are able to create HMM databases by running the script located at
+```/repo/hmm_database_creation/create_hmm_databases.py```.
+As a result of this script, reference/representative RefSeq genome files of fungi and bacteria are downloaded from NCBI. These genome files are used by the ```cblaster makedb``` module to create HMM databases that can be searched using given HMM profiles.
 
-Currently, HMM databases can only be created for these two kingdoms (and the kingdoms as a whole). In future releases, we aim to have pre-baked HMM databases and scripts to create HMM databases for specific genera. 
+The script creates a HMM database for every genus that meets the minimum number of genome files. This number of genome files can be adapted within the ```/repo/hmm_database_creation/create_hmm_databases.py``` file (variable: ```min_genomes_number```) 
+
+Currently, HMM databases can only be created for fungi and bacteria (and as a whole). In future releases, we aim to have pre-baked HMM databases and scripts to create HMM databases for specific genera. 
 
 #### a. From your own computer
 Navigate to [http://localhost:5364/](http://localhost:5364/) in your browser and use CAGECAT.
