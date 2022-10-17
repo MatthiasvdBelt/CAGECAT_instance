@@ -13,6 +13,7 @@ git clone https://github.com/MatthiasvdBelt/CAGECAT_instance.git
 ### 2. Fill in parameters in the ```CAGECAT_instance/dummies``` folder
 **Obligatory:**
 1. Add email to ```config.ini``` (obligatory by NCBI)
+2. Change the value of the```csrf_key``` variable  in ```sensitive.py``` to a custom, random, unguessable value. CAGECAT will raise an error if you did forgot to change this value.
 
 
 **Optional**
