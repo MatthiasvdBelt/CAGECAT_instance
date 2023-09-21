@@ -25,7 +25,7 @@ If you wish to add the functionality to send your users email notifications, per
 
 
 ### 3. Preparing the container
-Execute the following steps with the geven commands for your operating system.
+Execute the following steps with the given commands for your operating system.
 
 1. Name a container and Docker image tag
    1. Use the desired Docker image tag. [Can be inspected here.](https://hub.docker.com/repository/docker/matthiasvdbelt/cagecat_instance/general)
@@ -95,7 +95,7 @@ set container_ip=docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddre
 ssh <ip_address_of_computer_running_docker_container> -L 9999:%container_ip%:88
 ```
 
-Next, you are able to use CAGECAT and all it's functionalities when navigating to [http://localhost:9999/](http://localhost:9999/) in your browser.
+Next, you are able to use CAGECAT and all its functionalities when navigating to [http://localhost:9999/](http://localhost:9999/) in your browser.
 
 ### 5. Updating CAGECAT
 1. Currently, **no backup** is created from your local database and executed jobs.
